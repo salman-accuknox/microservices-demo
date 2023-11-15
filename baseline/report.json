@@ -1,0 +1,233 @@
+{
+  "Clusters": {
+    "default": {
+      "ClusterName": "default",
+      "Namespaces": {
+        "default": {
+          "NamespaceName": "default",
+          "ResourceTypes": {
+            "Deployment": {
+              "ResourceType": "Deployment",
+              "Resources": {
+                "adservice": {
+                  "ResourceType": "Deployment",
+                  "ResourceName": "adservice",
+                  "MetaData": {
+                    "Label": "app=adservice",
+                    "ContainerName": "server"
+                  },
+                  "SummaryData": {
+                    "ProcessData": [
+                      {
+                        "Source": "/usr/bin/runc",
+                        "Destination": "/bin/grpc_health_probe",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "FileData": [
+                      {
+                        "Source": "/bin/grpc_health_probe",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "IngressConnection": [
+                      {
+                        "Protocol": "TCP",
+                        "Command": "/usr/local/openjdk-8/bin/java",
+                        "IP": "127.0.0.1",
+                        "Port": "9555"
+                      }
+                    ],
+                    "EgressConnection": [
+                      {
+                        "Protocol": "TCP",
+                        "Command": "/bin/grpc_health_probe",
+                        "IP": "127.0.0.1",
+                        "Port": "9555"
+                      }
+                    ]
+                  }
+                },
+                "currencyservice": {
+                  "ResourceType": "Deployment",
+                  "ResourceName": "currencyservice",
+                  "MetaData": {
+                    "Label": "app=currencyservice",
+                    "ContainerName": "server"
+                  },
+                  "SummaryData": {
+                    "ProcessData": [
+                      {
+                        "Source": "/usr/bin/runc",
+                        "Destination": "/bin/grpc_health_probe",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "FileData": [
+                      {
+                        "Source": "/bin/grpc_health_probe",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "IngressConnection": [
+                      {
+                        "Protocol": "TCPv6",
+                        "Command": "/usr/local/bin/node",
+                        "IP": "127.0.0.1",
+                        "Port": "7000"
+                      }
+                    ],
+                    "EgressConnection": [
+                      {
+                        "Protocol": "TCP",
+                        "Command": "/bin/grpc_health_probe",
+                        "IP": "127.0.0.1",
+                        "Port": "7000"
+                      }
+                    ]
+                  }
+                },
+                "emailservice": {
+                  "ResourceType": "Deployment",
+                  "ResourceName": "emailservice",
+                  "MetaData": {
+                    "Label": "app=emailservice",
+                    "ContainerName": "server"
+                  },
+                  "SummaryData": {
+                    "ProcessData": [
+                      {
+                        "Source": "/usr/bin/runc",
+                        "Destination": "/bin/grpc_health_probe",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "FileData": [
+                      {
+                        "Source": "/bin/grpc_health_probe",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "IngressConnection": [
+                      {
+                        "Protocol": "TCP",
+                        "Command": "/usr/local/bin/python3.7",
+                        "IP": "127.0.0.1",
+                        "Port": "8080"
+                      }
+                    ],
+                    "EgressConnection": [
+                      {
+                        "Protocol": "TCP",
+                        "Command": "/bin/grpc_health_probe",
+                        "IP": "127.0.0.1",
+                        "Port": "8080"
+                      }
+                    ]
+                  }
+                },
+                "frontend": {
+                  "ResourceType": "Deployment",
+                  "ResourceName": "frontend",
+                  "MetaData": {
+                    "Label": "app=frontend",
+                    "ContainerName": "server"
+                  },
+                  "SummaryData": {
+                    "IngressConnection": [
+                      {
+                        "Protocol": "TCPv6",
+                        "Command": "/src/server",
+                        "IP": "10.42.0.1",
+                        "Port": "8080"
+                      }
+                    ]
+                  }
+                },
+                "loadgenerator": {
+                  "ResourceType": "Deployment",
+                  "ResourceName": "loadgenerator",
+                  "MetaData": {
+                    "Label": "app=loadgenerator",
+                    "ContainerName": "main"
+                  },
+                  "SummaryData": {
+                    "ProcessData": [
+                      {
+                        "Source": "/usr/bin/containerd-shim-runc-v2",
+                        "Destination": "/bin/sh",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "FileData": [
+                      {
+                        "Source": "/bin/dash",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "EgressConnection": [
+                      {
+                        "Protocol": "TCP",
+                        "Command": "/usr/local/bin/locust",
+                        "IP": "svc/frontend",
+                        "Port": "80",
+                        "Namespace": "default"
+                      }
+                    ],
+                    "BindConnection": [
+                      {
+                        "Protocol": "AF_INET6",
+                        "Command": "/usr/local/bin/locust",
+                        "BindPort": "0",
+                        "BindAddress": "::1"
+                      }
+                    ]
+                  }
+                },
+                "recommendationservice": {
+                  "ResourceType": "Deployment",
+                  "ResourceName": "recommendationservice",
+                  "MetaData": {
+                    "Label": "app=recommendationservice",
+                    "ContainerName": "server"
+                  },
+                  "SummaryData": {
+                    "ProcessData": [
+                      {
+                        "Source": "/usr/bin/runc",
+                        "Destination": "/bin/grpc_health_probe",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "FileData": [
+                      {
+                        "Source": "/bin/grpc_health_probe",
+                        "Status": "Allow"
+                      }
+                    ],
+                    "IngressConnection": [
+                      {
+                        "Protocol": "TCP",
+                        "Command": "/usr/local/bin/python3.7",
+                        "IP": "127.0.0.1",
+                        "Port": "8080"
+                      }
+                    ],
+                    "EgressConnection": [
+                      {
+                        "Protocol": "TCP",
+                        "Command": "/bin/grpc_health_probe",
+                        "IP": "127.0.0.1",
+                        "Port": "8080"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
