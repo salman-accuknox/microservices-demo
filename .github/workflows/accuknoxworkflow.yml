@@ -28,6 +28,14 @@ jobs:
         
         - name: Install accuknoxcli, KubeArmor and Discovery Engine
           uses: accuknox/install-action@v0.1.1 
+
+        - name: Intall microservices
+          run: |
+            kubectl apply -f release/kubernetes-manifests.yaml
+            sleep 120s
+       
+        - name: Generate Report
+          uses: accuknox/report-action@v0.1.2 
  
         - name: Generate Report
           uses: accuknox/report-action@v0.1.2
